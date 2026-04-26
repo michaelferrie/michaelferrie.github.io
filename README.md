@@ -1,177 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greek Phrasebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Greek Phrasebook (Green Edition)</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
+        /* Base Styles and Colors */
+        :root {
+            --primary-green: #2ecc71; /* A bright, fresh green */
+            --dark-green: #27ae60;    /* For headers and strong elements */
+            --bg-color: #f0faf4;      /* Very pale green background */
+            --text-color: #2c3e50;    /* Dark gray/blue for text */
+            --border-color: #e0e0e0;
         }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 10px; /* Reduced padding for mobile */
+        }
+
         .container {
             max-width: 900px;
-            margin: auto;
+            margin: 0 auto;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.1); /* Subtle green shadow */
         }
+
         h1 {
-            color: #005A9C;
+            color: var(--dark-green);
             text-align: center;
-            border-bottom: 2px solid #005A9C;
-            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 1.8rem;
         }
+
         h2 {
-            color: #0073CF;
-            margin-top: 30px;
-            font-size: 1.2em;
+            color: var(--dark-green);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            background-color: white;
         }
+
+        /* Desktop Table Styling */
         th, td {
             text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
         }
+
         th {
-            background-color: #005A9C;
+            background-color: var(--primary-green);
             color: white;
+            font-weight: 600;
         }
+
+        /* Interacting Styles */
+        tr:nth-child(even) {
+            background-color: #fbfdfc; /* Alternate row color */
+        }
+
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #f0fdf4; /* Row hover highlight */
         }
+
+        /* Column specific styling */
+        .col-english {
+            width: 40%;
+            color: #7f8c8d; /* Muted gray for English */
+        }
+        .col-greek {
+            width: 60%;
+        }
+
+        .greek-text {
+            font-weight: bold;
+            color: var(--dark-green);
+            font-size: 1.1rem;
+            display: block; /* Ensures Greek is on its own line in card view */
+        }
+
         .pronunciation {
             color: #666;
             font-style: italic;
-            font-size: 0.9em;
+            font-size: 0.95rem;
+            display: block; /* Ensures Pronunciation is on its own line in card view */
+            margin-top: 4px;
         }
-        .greek-text {
-            font-weight: bold;
-            color: #000;
+
+        /* =========================================
+           MOBILE RESPONSIVE STYLING (The Magic)
+           ========================================= */
+        @media screen and (max-width: 650px) {
+            
+            h1 { font-size: 1.5rem; }
+
+            /* Hide table headers (but keep accessible) */
+            table thead {
+                display: none;
+            }
+
+            table, table tbody, table tr, table td {
+                display: block;
+                width: 100%;
+            }
+
+            /* Style each row like a separate 'card' */
+            table tr {
+                margin-bottom: 20px;
+                background-color: white;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                overflow: hidden; /* Fixes border radius */
+            }
+
+            /* Make alternate row coloring work as alternate card coloring instead */
+            table tr:nth-child(even) {
+                background-color: #fcfdfd;
+            }
+
+            /* Style the 'cells' (TDs) within the card */
+            table td {
+                padding: 15px;
+                border-bottom: none;
+                position: relative;
+            }
+
+            /* Top 'cell' of the card (the English phrase) */
+            table td:first-child {
+                border-bottom: 1px solid var(--border-color);
+                background-color: #fafafa;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #555;
+            }
+
+            /* The Greek text (already has green color, just need to align) */
+            .greek-text {
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🇬🇷 Greek Essential Phrases</h1>
+    <h1>🇬🇷 Greek Phrasebook</h1>
 
     <h2>Daily Interactions & Logistics</h2>
     <table>
-        <tr>
-            <th>English</th>
-            <th>Greek</th>
-            <th>Pronunciation</th>
-        </tr>
-        <tr>
-            <td>Can you help me, please?</td>
-            <td class="greek-text">Μπορείτε να με βοηθήσετε, παρακαλώ;</td>
-            <td class="pronunciation">Bo-ree-te na me vo-ee-thee-se-te, pa-ra-ka-lo?</td>
-        </tr>
-        <tr>
-            <td>Where do you work?</td>
-            <td class="greek-text">Πού δουλεύεις;</td>
-            <td class="pronunciation">Poo thoo-lev-is?</td>
-        </tr>
-        <tr>
-            <td>What’s the best way to…?</td>
-            <td class="greek-text">Ποιος είναι ο καλύτερος τρόπος για να...;</td>
-            <td class="pronunciation">Pyos ee-ne o ka-lee-te-ros tro-pos ya na...?</td>
-        </tr>
-        <tr>
-            <td>What’s your phone number?</td>
-            <td class="greek-text">Ποιο είναι το τηλέφωνό σου;</td>
-            <td class="pronunciation">Pyo ee-ne to tee-le-fo-no soo?</td>
-        </tr>
-        <tr>
-            <td>How was your day?</td>
-            <td class="greek-text">Πώς ήταν η μέρα σου;</td>
-            <td class="pronunciation">Pos ee-tan ee me-ra soo?</td>
-        </tr>
-        <tr>
-            <td>Excuse me, where’s the bathroom?</td>
-            <td class="greek-text">Με συγχωρείτε, πού είναι η τουαλέτα;</td>
-            <td class="pronunciation">Me sin-ho-ree-te, poo ee-ne ee toa-le-ta?</td>
-        </tr>
-        <tr>
-            <td>Directions to the gas station?</td>
-            <td class="greek-text">Οδηγίες για το βενζινάδικο;</td>
-            <td class="pronunciation">O-thee-yee-es ya to ven-zee-na-thee-ko?</td>
-        </tr>
-        <tr>
-            <td>See you later / Goodbye</td>
-            <td class="greek-text">Τα λέμε / Αντίο</td>
-            <td class="pronunciation">Ta le-me / An-thee-o</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>English</th>
+                <th>Greek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-english">Can you help me, please?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Μπορείτε να με βοηθήσετε, παρακαλώ;</span>
+                    <span class="pronunciation">(Bo-ree-te na me vo-ee-thee-se-te, pa-ra-ka-lo?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">Excuse me, where’s the bathroom?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Με συγχωρείτε, πού είναι η τουαλέτα;</span>
+                    <span class="pronunciation">(Me sin-ho-ree-te, poo ee-ne ee toa-le-ta?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">What time is it?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Τι ώρα είναι;</span>
+                    <span class="pronunciation">(Tee o-ra ee-ne?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">Directions to the gas station?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Οδηγίες για το βενζινάδικο;</span>
+                    <span class="pronunciation">(O-thee-yee-es ya to ven-zee-na-thee-ko?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">See you later / Goodbye</td>
+                <td class="col-greek">
+                    <span class="greek-text">Τα λέμε αργότερα / Αντίο</span>
+                    <span class="pronunciation">(Ta le-me ar-go-te-ra / An-thee-o)</span>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
-    <h2>Shopping & Dining</h2>
+    <h2>Dining & Communication</h2>
     <table>
-        <tr>
-            <th>English</th>
-            <th>Greek</th>
-            <th>Pronunciation</th>
-        </tr>
-        <tr>
-            <td>Different size?</td>
-            <td class="greek-text">Σε άλλο μέγεθος;</td>
-            <td class="pronunciation">Se al-lo me-ge-thos?</td>
-        </tr>
-        <tr>
-            <td>Taxi to city center?</td>
-            <td class="greek-text">Ταξί για το κέντρο;</td>
-            <td class="pronunciation">Ta-ksee ya to ken-tro?</td>
-        </tr>
-        <tr>
-            <td>The bill, please.</td>
-            <td class="greek-text">Τον λογαριασμό, παρακαλώ.</td>
-            <td class="pronunciation">Ton lo-ga-rya-smo, pa-ra-ka-lo</td>
-        </tr>
-        <tr>
-            <td>Joe wants some water.</td>
-            <td class="greek-text">Ο Τζο θέλει λίγο νερό.</td>
-            <td class="pronunciation">O Joe the-lee lee-go ne-ro</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>English</th>
+                <th>Greek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-english">The bill, please.</td>
+                <td class="col-greek">
+                    <span class="greek-text">Τον λογαριασμό, παρακαλώ.</span>
+                    <span class="pronunciation">(Ton lo-ga-rya-smo, pa-ra-ka-lo)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">Can you tell me a joke?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Μπορείς να μου πεις ένα ανέκδοτο;</span>
+                    <span class="pronunciation">(Bo-rees na moo pees e-na a-nek-tho-to?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">How was your day?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Πώς ήταν η μέρα σου;</span>
+                    <span class="pronunciation">(Pos ee-tan ee me-ra soo?)</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-english">What’s the weather like?</td>
+                <td class="col-greek">
+                    <span class="greek-text">Τι καιρό κάνει;</span>
+                    <span class="pronunciation">(Tee ke-ro ka-nee?)</span>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
-    <h2>Time, Weather & Communication</h2>
-    <table>
-        <tr>
-            <th>English</th>
-            <th>Greek</th>
-            <th>Pronunciation</th>
-        </tr>
-        <tr>
-            <td>I’ve worked here 2 years.</td>
-            <td class="greek-text">Δουλεύω εδώ δύο χρόνια.</td>
-            <td class="pronunciation">Thoo-lev-o e-tho thee-o hro-nya</td>
-        </tr>
-        <tr>
-            <td>What time is it?</td>
-            <td class="greek-text">Τι ώρα είναι;</td>
-            <td class="pronunciation">Tee o-ra ee-ne?</td>
-        </tr>
-        <tr>
-            <td>What’s the weather like?</td>
-            <td class="greek-text">Τι καιρό κάνει;</td>
-            <td class="pronunciation">Tee ke-ro ka-nee?</td>
-        </tr>
-        <tr>
-            <td>Tell me a joke?</td>
-            <td class="greek-text">Πες μου ένα ανέκδοτο;</td>
-            <td class="pronunciation">Pes moo e-na a-nek-tho-to?</td>
-        </tr>
-    </table>
 </div>
 
 </body>
